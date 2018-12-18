@@ -1,0 +1,243 @@
+spring:
+  profiles:
+    active: dt-ui
+---
+spring:
+  profiles: dt-ui
+wdm:
+  chromeDriverVersion: 2.42
+  forceCache: false
+  architecture: X32
+  chromeDriverUrl: https://chromedriver.storage.googleapis.com/
+selenide:
+  browserSize: 1600x900
+  reportsFolder: target/selenide
+  screenshots: false
+  savePageSource: false
+  captureJavascriptErrors: false
+cucumber:
+  options: "--tags @UI --tags ~@skip --plugin pretty --plugin json:test-report/cucumber.json src/test/resources/features"
+mail:
+  smtp:
+    host: smtp.office365.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+application:
+  testRailCaseUrl: https://continuum.testrail.net/index.php?/cases/view/
+  mail:
+    reportUser: qe_automation@continuum.net
+    reportPassword: R1Soft*88
+    reportMail: false
+    reportReceiver: dmytro.malohlovets@continuum.net
+  testrail:
+    update: true
+    testRun: R11052
+    url: https://continuum.testrail.net
+    user: qe_automation@continuum.net
+    password: Abcd@1234
+  testResultsDb:
+    url: 40.121.209.122:3306/
+    name: AutomationDashboard
+    user: root
+    password: Q34ut0m4t10n
+  reportOutputDirectory: test-report
+  name: Security Solution UI
+  repoNames:
+  - dev_security-portal-service
+  environment:
+    baseUrlUI: https://control.dtitsupport247.net/
+    baseUrlBE: https://integration.control.v2.itsupport247.net/
+    authUrl: https://idmserver.dtitsupport247.net:443/openam/json/
+    user: secsol1@continuum.net
+    pass: Secsol@1234
+    timeoutsMultiplicator: 1
+  selenium:
+    browser: CHROME
+    remote: false
+    hubUrl: http://localhost:4444/wd/hub
+  jenkins:
+    user: dm2user@continuum.net
+    password: Pass@1234
+    enabled: false
+---
+spring:
+  profiles: dt-be
+cucumber:
+  options: "--tags @DT-BE --plugin pretty --plugin json:test-report/cucumber.json src/test/resources/features"
+mail:
+  smtp:
+    host: smtp.office365.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+application:
+  environment:
+    baseUrlBE: https://integration.control.v2.itsupport247.net/
+    authUrl: https://idmserver.dtitsupport247.net:443/openam/json/
+    user: secsol1@continuum.net
+    pass: Secsol@1234
+    timeoutsMultiplicator: 1
+  testRailCaseUrl: https://continuum.testrail.net/index.php?/cases/view/
+  mail:
+    reportUser: qe_automation@continuum.net
+    reportPassword: R1Soft*88
+    reportMail: false
+    reportReceiver: dmytro.malohlovets@continuum.net
+  testrail:
+    update: true
+    testRun: R11052
+    url: https://continuum.testrail.net
+    user: qe_automation@continuum.net
+    password: Abcd@1234
+  testResultsDb:
+    url: 40.121.209.122:3306/
+    name: AutomationDashboard
+    user: root
+    password: Q34ut0m4t10n
+  reportOutputDirectory: test-report
+  name: Security Solution BE
+  repoNames:
+  - dev_security-portal-service
+  jenkins:
+    user: dm2user@continuum.net
+    password: Pass@1234
+    enabled: false
+---
+spring:
+  profiles: qa-be
+cucumber:
+  options: "--tags @QA-BE --plugin pretty --plugin json:test-report/cucumber.json src/test/resources/features"
+wiremock:
+  server:
+    port: 8084
+mail:
+  smtp:
+    host: smtp.office365.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+application:
+  environment:
+    baseUrlBE: https://qa.control.v2.itsupport247.net/
+    authUrl: https://idmserver.qa.itsupport247.net:443/openam/json/
+    user: anna.ostrovska@continuum.net
+    pass: Pass@12345
+    timeoutsMultiplicator: 1
+  testRailCaseUrl: https://continuum.testrail.net/index.php?/cases/view/
+  mail:
+    reportUser: qe_automation@continuum.net
+    reportPassword: R1Soft*88
+    reportMail: false
+    reportReceiver: dmytro.malohlovets@continuum.net
+  testrail:
+    update: true
+    testRun: R10099
+    url: https://continuum.testrail.net
+    user: qe_automation@continuum.net
+    password: Abcd@1234
+  testResultsDb:
+    url: 40.121.209.122:3306/
+    name: AutomationDashboard
+    user: root
+    password: Q34ut0m4t10n
+  reportOutputDirectory: test-report
+  name: Security Solution BE
+  repoNames:
+  - dev_security-portal-service
+  jenkins:
+    user: dm2user@continuum.net
+    password: Pass@1234
+    enabled: false
+  remotehosts:
+  - name: Win7_32Bit
+    ip: 10.2.114.112
+    port: 22
+    user: Administrator
+    password: Abc@1234
+  - name: Win7_64Bit
+    ip: 10.2.114.87
+    port: 22
+    user: Administrator
+    password: Abc@1234
+  - name: Win8_32Bit
+    ip: 10.2.114.76
+    port: 22
+    user: Administrator
+    password: Abc@1234
+  - name: Win8_64Bit
+    ip: 10.2.114.115
+    port: 22
+    user: Administrator
+    password: Abc@1234
+  - name: Win10_32Bit
+    ip: 10.2.114.75
+    port: 22
+    user: rmmengg
+    password: engg@123
+  - name: Win10_64Bit
+    ip: 10.2.114.117
+    port: 22
+    user: Administrator
+    password: Abc@1234
+---
+spring:
+  profiles: qa-ui
+wdm:
+  chromeDriverVersion: 2.42
+  forceCache: false
+  architecture: X64
+  chromeDriverUrl: https://chromedriver.storage.googleapis.com/
+selenide:
+  browserSize: 1600x900
+  reportsFolder: target/selenide
+  screenshots: false
+  savePageSource: false
+  captureJavascriptErrors: false
+cucumber:
+  options: "--tags @UI --plugin pretty --plugin json:test-report/cucumber.json src/test/resources/features"
+mail:
+  smtp:
+    host: smtp.office365.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+application:
+  testRailCaseUrl: https://continuum.testrail.net/index.php?/cases/view/
+  mail:
+    reportUser: qe_automation@continuum.net
+    reportPassword: R1Soft*88
+    reportMail: false
+    reportReceiver: dmytro.malohlovets@continuum.net
+  testrail:
+    update: true
+    testRun: R11587
+    url: https://continuum.testrail.net
+    user: qe_automation@continuum.net
+    password: Abcd@1234
+  testResultsDb:
+    url: 40.121.209.122:3306/
+    name: AutomationDashboard
+    user: root
+    password: Q34ut0m4t10n
+  reportOutputDirectory: test-report
+  name: Security Solution UI
+  repoNames:
+  - dev_security-portal-service
+  selenium:
+    browser: CHROME
+    remote: false
+    hubUrl: http://localhost:4444/wd/hub
+  environment:
+    baseUrlUI: https://control.qa.itsupport247.net/
+    user: anna.ostrovska@continuum.net
+    pass: Pass@12345
+    timeoutsMultiplicator: 1
+  jenkins:
+    user: dm2user@continuum.net
+    password: Pass@1234
+    enabled: false
